@@ -112,6 +112,20 @@ These metrics are from the final validation run after five training epochs.
 
 ## 🖥️ Streamlit Inspection Dashboard
 
+The application provides:
+
+- PCB image upload
+- Adjustable detection confidence threshold
+- Original PCB image visualization
+- Annotated PCB image visualization
+- Total defect count
+- Average detection confidence
+- Number of detected defect types
+- Detection details table
+- Defect distribution chart
+- Annotated image download
+- Inspection report download
+
 ## 📸 Dashboard Screenshots
 
 ### Inspection Dashboard
@@ -132,21 +146,7 @@ The dashboard provides detection details, defect distribution, and downloadable 
 
 ![Inspection Results](screenshots/inspection-results.png)
 
-The application provides:
-
-- PCB image upload
-- Adjustable detection confidence threshold
-- Original PCB image visualization
-- Annotated PCB image visualization
-- Total defect count
-- Average detection confidence
-- Number of detected defect types
-- Detection details table
-- Defect distribution chart
-- Annotated image download
-- Inspection report download
-
-### Example Workflow
+## 🔄 Inspection Workflow
 
 ```text
 Upload PCB Image
@@ -188,26 +188,36 @@ Windows:
 ### 4. Install Dependencies
 
 ```bash
-pip install ultralytics opencv-python numpy pandas matplotlib scikit-learn streamlit pillow
+pip install -r requirements.txt
 ```
 
 ### 5. Dataset and Model
 
-The PCB-IND dataset and trained model weights are **not included in this repository**.
+The PCB-IND dataset and trained YOLO11n model weights are **not included in this repository** because of their size.
 
-The application expects the trained YOLO model at:
+The dataset is expected in the following structure:
+
+```text
+dataset/
+└── YOLO/
+    ├── data.yaml
+    ├── images/
+    │   ├── train/
+    │   ├── val/
+    │   └── test/
+    └── labels/
+        ├── train/
+        ├── val/
+        └── test/
+```
+
+The trained model is expected at:
 
 ```text
 runs/detect/results/pcb_yolo_5ep/weights/best.pt
 ```
 
-The dataset is expected under:
-
-```text
-dataset/YOLO/
-```
-
-### 6. Run the Dataset Validation
+### 6. Validate the Dataset
 
 After preparing the dataset:
 
@@ -215,13 +225,15 @@ After preparing the dataset:
 python src/check_dataset.py
 ```
 
+A valid dataset should pass the project validation checks before training or inference.
+
 ### 7. Run the Streamlit Application
 
 ```bash
 streamlit run app.py
 ```
 
-Open the displayed local Streamlit URL in your browser, normally:
+Open the local Streamlit URL shown in the terminal, normally:
 
 ```text
 http://localhost:8501
@@ -233,15 +245,22 @@ http://localhost:8501
 AI-PCB-Defect-Detection/
 │
 ├── app.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+│
 ├── src/
 │   └── check_dataset.py
-├── .gitignore
+│
+├── screenshots/
+│   ├── dashboard-overview.png
+│   ├── pcb-detection.png
+│   └── inspection-results.png
 │
 ├── dataset/        # Excluded from GitHub
 ├── runs/           # Excluded from GitHub
 ├── results/        # Excluded from GitHub
-├── .venv/          # Excluded from GitHub
-└── README.md
+└── .venv/          # Excluded from GitHub
 ```
 
 ## 📈 Inspection Output
