@@ -112,6 +112,26 @@ These metrics are from the final validation run after five training epochs.
 
 ## 🖥️ Streamlit Inspection Dashboard
 
+## 📸 Dashboard Screenshots
+
+### Inspection Dashboard
+
+The Streamlit dashboard provides PCB image upload, model configuration, inspection statistics, and defect visualization.
+
+![PCB Inspection Dashboard](screenshots/dashboard-overview.png)
+
+### PCB Defect Detection
+
+The system displays the original PCB image alongside the AI-detected defect with its bounding box and confidence score.
+
+![PCB Defect Detection](screenshots/pcb-detection.png)
+
+### Inspection Results
+
+The dashboard provides detection details, defect distribution, and downloadable inspection results.
+
+![Inspection Results](screenshots/inspection-results.png)
+
 The application provides:
 
 - PCB image upload
